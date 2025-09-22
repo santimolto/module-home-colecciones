@@ -1,0 +1,11 @@
+{
+  "name": "santi/module-home-colecciones",
+  "description": "Gestión dinámica del bloque Colecciones del home vía System Config (multistore). 3 items.",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "autoload": {
+    "files": ["registration.php"],
+    "psr-4": { "Santi\\HomeColecciones\\": "" }
+  }
+}

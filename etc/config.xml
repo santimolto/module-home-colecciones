@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <santi_home_colecciones>
+            <home>
+                <item1><enabled>0</enabled><sort_order>0</sort_order></item1>
+                <item2><enabled>0</enabled><sort_order>10</sort_order></item2>
+                <item3><enabled>0</enabled><sort_order>20</sort_order></item3>
+            </home>
+        </santi_home_colecciones>
+    </default>
+</config>

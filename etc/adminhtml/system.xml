@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="santi_extensions" translate="label" sortOrder="1000">
+            <label>Santi Extensions</label>
+        </tab>
+
+        <section id="santi_home_colecciones" translate="label" sortOrder="60"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Home Colecciones</label>
+            <tab>santi_extensions</tab>
+            <resource>Magento_Config::config</resource>
+
+            <group id="home" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Colecciones del Home</label>
+
+                <field id="helper" translate="label" type="note" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ayuda</label>
+                    <comment><![CDATA[
+                        <p><strong>Tamaños recomendados:</strong> ratio <em>4:3</em> (p.ej. 1200×900). Formato <em>WebP</em> si es posible.</p>
+                        <p>El primer bloque suele ser más ancho (col-span-2).</p>
+                    ]]></comment>
+                </field>
+
+<group id="item1" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Item 1</label>
+                    <field id="enabled" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Habilitado</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="image" type="image" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Imagen</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">santi_home_colecciones</upload_dir>
+                        <base_url type="media" scope_info="1">santi_home_colecciones</base_url>
+                    </field>
+                    <field id="image_alt" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Alt de la imagen</label>
+                    </field>
+                    <field id="label" type="text" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Etiqueta visible</label>
+                    </field>
+                    <field id="url" type="text" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>URL</label>
+                        <comment>Ej.: coleccion-factory.html o /coleccion-factory.html</comment>
+                    </field>
+                    <field id="sort_order" type="text" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Orden</label>
+                        <validate>validate-number</validate>
+                    </field>
+                </group>
+<group id="item2" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Item 2</label>
+                    <field id="enabled" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Habilitado</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="image" type="image" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Imagen</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">santi_home_colecciones</upload_dir>
+                        <base_url type="media" scope_info="1">santi_home_colecciones</base_url>
+                    </field>
+                    <field id="image_alt" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Alt de la imagen</label>
+                    </field>
+                    <field id="label" type="text" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Etiqueta visible</label>
+                    </field>
+                    <field id="url" type="text" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>URL</label>
+                        <comment>Ej.: coleccion-factory.html o /coleccion-factory.html</comment>
+                    </field>
+                    <field id="sort_order" type="text" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Orden</label>
+                        <validate>validate-number</validate>
+                    </field>
+                </group>
+<group id="item3" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Item 3</label>
+                    <field id="enabled" type="select" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Habilitado</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="image" type="image" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Imagen</label>
+                        <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                        <upload_dir config="system/filesystem/media" scope_info="1">santi_home_colecciones</upload_dir>
+                        <base_url type="media" scope_info="1">santi_home_colecciones</base_url>
+                    </field>
+                    <field id="image_alt" type="text" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Alt de la imagen</label>
+                    </field>
+                    <field id="label" type="text" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Etiqueta visible</label>
+                    </field>
+                    <field id="url" type="text" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>URL</label>
+                        <comment>Ej.: coleccion-factory.html o /coleccion-factory.html</comment>
+                    </field>
+                    <field id="sort_order" type="text" translate="label" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Orden</label>
+                        <validate>validate-number</validate>
+                    </field>
+                </group>
+
+            </group>
+        </section>
+    </system>
+</config>

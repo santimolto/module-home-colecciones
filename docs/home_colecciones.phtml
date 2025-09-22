@@ -1,0 +1,85 @@
+<?php
+/**
+ * Bloque Colecciones (dinámico con fallback)
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Hyva\Theme\Model\ViewModelRegistry $viewModels
+ */
+
+declare(strict_types=1);
+
+// 1) Cargar dinámico
+$vm = $viewModels->require(\Santi\HomeColecciones\ViewModel\Colecciones::class);
+$colecciones = $vm->getItems();
+
+// 2) ¿hay al menos un item con datos?
+$hasConfigured = array_filter($colecciones, static function ($i) {
+    return !empty($i['image_url']) || !empty($i['label']) || !empty($i['url']);
+});
+
+// 3) Fallback dummy si no hay configurados
+if (!$hasConfigured) {
+    $colecciones = [
+        [
+            'label'     => __('Colección Factory'),
+            'url'       => $block->getUrl('coleccion-factory.html'),
+            'image_url' => $block->getViewFileUrl('images/home/colecciones/colecciones.webp'),
+            'image_alt' => __('Colección de muebles estilo industrial Factory'),
+        ],
+        [
+            'label'     => __('Colección Nórdica'),
+            'url'       => $block->getUrl('coleccion-nordica.html'),
+            'image_url' => $block->getViewFileUrl('images/home/colecciones/colecciones-02.webp'),
+            'image_alt' => __('Colección de muebles estilo nórdico'),
+        ],
+        [
+            'label'     => __('Colección Minimal'),
+            'url'       => $block->getUrl('coleccion-minimal.html'),
+            'image_url' => $block->getViewFileUrl('images/home/colecciones/colecciones-03.webp'),
+            'image_alt' => __('Colección de muebles de diseño minimalista'),
+        ],
+    ];
+}
+?>
+
+<section class="my-10">
+    <div class="flex-wrap flex justify-between items-baseline mb-6 px-4 md:px-0">
+        <h2 class="text-3xl leading-9 font-bold mr-1"><?= $escaper->escapeHtml(__('Colecciones')) ?></h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-2 gap-3">
+        <?php foreach ($colecciones as $index => $coleccion): ?>
+            <?php
+                $url  = $coleccion['url'] ?? '#';
+                $img  = $coleccion['image_url'] ?? '';
+                $alt  = $coleccion['image_alt'] ?? ($coleccion['label'] ?? 'Colección');
+                $label= $coleccion['label'] ?? '';
+            ?>
+            <a href="<?= $escaper->escapeUrl($url) ?>"
+               class="group relative block overflow-hidden shadow-md hover:shadow-lg transition-transform duration-300 h-64
+                      <?= $index === 0 ? 'col-span-2' : '' ?>">
+                <div class="aspect-w-4 aspect-h-3">
+                    <?php if ($img): ?>
+                        <img alt="<?= $escaper->escapeHtmlAttr($alt) ?>"
+                             class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
+                             src="<?= $escaper->escapeUrl($img) ?>"
+                             width="800" height="600" loading="lazy" />
+                    <?php else: ?>
+                        <div class="w-full h-full bg-gray-100 flex items-center justify-center">
+                            <span class="text-gray-500 text-lg"><?= $escaper->escapeHtml($label ?: __('Colección')) ?></span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-300"></div>
+                <?php if ($label): ?>
+                    <div class="absolute bottom-0 left-0 right-0 p-4">
+                        <span class="inline-block text-white text-base md:text-lg font-semibold bg-black/10 backdrop-blur-sm px-3 py-1 rounded-lg">
+                            <?= $escaper->escapeHtml($label) ?>
+                        </span>
+                    </div>
+                <?php endif; ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</section>
