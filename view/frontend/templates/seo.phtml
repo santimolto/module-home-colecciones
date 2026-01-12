@@ -1,0 +1,54 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+$vm = $block->getData('view_model');
+if (!$vm || !$vm->isEnabled()) {
+    return;
+}
+$title = trim((string) $vm->getTitle());
+$html  = (string) $vm->getHtml();
+if (trim(strip_tags($html)) === '') {
+    return;
+}
+$lines = max(1, (int) $vm->getCollapsedLines());
+$clampStyle = 'display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;-webkit-line-clamp:' . $lines . ';';
+?>
+<section class="mt-10">
+  <div class="container mx-auto">
+    <div class="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+         x-data="{ open: false }">
+
+      <?php if ($title !== ''): ?>
+        <h1 class="text-xl font-semibold mb-4">
+          <?= $block->escapeHtml($title) ?>
+        </h1>
+      <?php endif; ?>
+
+      <!-- Full width content (sin 'prose' para evitar estrechez en desktop) -->
+      <div class="w-full text-base leading-relaxed text-gray-700">
+        <div class="w-full"
+             :style="open ? '' : '<?= $block->escapeHtmlAttr($clampStyle) ?>'">
+          <?= /* HTML permitido */ $html ?>
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <button type="button"
+                class="inline-flex items-center gap-2 rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-800
+                       transition hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
+                @click="open = !open"
+                :aria-expanded="open ? 'true' : 'false'">
+
+          <span x-text="open ? '<?= $block->escapeHtmlAttr($vm->getLabelLess()) ?>' : '<?= $block->escapeHtmlAttr($vm->getLabelMore()) ?>'"></span>
+
+          <!-- Chevron -->
+          <svg class="h-4 w-4 transition-transform duration-200"
+               :class="open ? 'rotate-180' : ''"
+               xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>

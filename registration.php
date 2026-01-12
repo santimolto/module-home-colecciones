@@ -1,3 +1,8 @@
 <?php
 use Magento\Framework\Component\ComponentRegistrar;
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Santi_HomeColecciones', __DIR__);
+
+ComponentRegistrar::register(
+    ComponentRegistrar::MODULE,
+    'Santi_HomeSeoText',
+    __DIR__
+);
